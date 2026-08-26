@@ -6,6 +6,7 @@ import { SignupInputDTO } from './dtos/signup-input.dto';
 import { SigninInputDTO } from './dtos/signin-input.dto';
 import { SigninOutputDTO } from './dtos/signin-output.dto';
 import { UserOutput } from '../user/dtos/user-output.dto';
+import { IsPublic } from '../shared/decorators/is-public/is-public.decorator';
 
 @ApiTags('Autenticação')
 @Controller('auth')
@@ -16,6 +17,7 @@ export class AuthController {
   ) { }
 
   @Post('signup')
+  @IsPublic()
   @ApiOperation({ summary: 'Cadastrar novo usuário' })
   @ApiResponse({ status: 201, description: 'Usuário criado com sucesso', type: UserOutput })
   @ApiResponse({ status: 400, description: 'E-mail já cadastrado' })
@@ -24,6 +26,7 @@ export class AuthController {
   }
 
   @Post('signin')
+  @IsPublic()
   @ApiOperation({ summary: 'Autenticar usuário' })
   @ApiResponse({ status: 200, description: 'Login realizado com sucesso', type: SigninOutputDTO })
   @ApiResponse({ status: 401, description: 'Credenciais inválidas' })
