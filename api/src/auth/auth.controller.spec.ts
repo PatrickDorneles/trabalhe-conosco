@@ -63,7 +63,7 @@ describe('AuthController', () => {
         .send(dto)
         .expect(400);
 
-      expect(response.body.message).toBe('auth.user-email-already-claimed');
+      expect(response.body.message).toBe('auth.user-email-already-in-use');
     });
   });
 
