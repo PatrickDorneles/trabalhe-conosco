@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Producer } from './producer.entity';
 import { ProducerCrop } from './producer-crop.entity';
@@ -21,7 +21,7 @@ import { DeleteProducerRepository } from './repositories/delete-producer/delete-
 @Module({
   imports: [
     TypeOrmModule.forFeature([Producer, ProducerCrop]),
-    RuralPropertyModule,
+    forwardRef(() => RuralPropertyModule),
     HarvestModule,
     CropModule,
   ],
@@ -39,5 +39,6 @@ import { DeleteProducerRepository } from './repositories/delete-producer/delete-
     UpdateProducerRepository,
     DeleteProducerRepository,
   ],
+  exports: [GetProducerService],
 })
 export class ProducersModule { }
