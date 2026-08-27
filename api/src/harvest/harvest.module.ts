@@ -11,6 +11,7 @@ import { SelectAllHarvestsRepository } from '@/harvest/repositories/select-all-h
 import { DeleteHarvestRepository } from '@/harvest/repositories/delete-harvest/delete-harvest.repository';
 import { UpdateHarvestService } from '@/harvest/services/update-harvest/update-harvest.service';
 import { UpdateHarvestRepository } from '@/harvest/repositories/update-harvest/update-harvest.repository';
+import { HarvestController } from './harvest.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Harvest])],
@@ -27,5 +28,6 @@ import { UpdateHarvestRepository } from '@/harvest/repositories/update-harvest/u
     UpdateHarvestService,
     UpdateHarvestRepository,
   ],
+  controllers: [HarvestController],
 })
 export class HarvestModule { }
