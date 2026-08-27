@@ -1,18 +1,31 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm'
 import { ProducerCrop } from '../producers/producer-crop.entity'
-import { Producer } from '../producers/producer.entity'
 
 @Entity()
 export class Harvest {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', unique: true })
   year: number
-
-  @ManyToOne(() => Producer, (producer) => producer.harvests)
-  producer: Producer
 
   @OneToMany(() => ProducerCrop, (producerCrop) => producerCrop.harvest)
   producerCrops: ProducerCrop[]
+
+  @CreateDateColumn()
+  createdAt: Date
+
+  @UpdateDateColumn()
+  updatedAt: Date
+
+  @DeleteDateColumn()
+  deletedAt: Date
 }

@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { SignupService } from './signup.service';
 import { CreateUserService } from 'src/user/services/create-user/create-user.service';
 import { GetUserService } from 'src/user/services/get-user/get-user.service';
-import { UserEmailAlreadyClaimedException } from 'src/auth/errors/user-email-already-claimed.exception';
+import { UserEmailAlreadyInUseException } from 'src/auth/errors/user-email-already-in-use.exception';
 import { UserNotFoundException } from 'src/user/errors/user-not-found.exception';
 
 describe('SignupService', () => {
@@ -55,7 +55,7 @@ describe('SignupService', () => {
       const existingUser = { id: '999', name: 'Jane', email: 'test@test.com' };
       mockGetUserService.getByEmail.mockResolvedValue(existingUser);
 
-      await expect(service.execute(dto)).rejects.toThrow(UserEmailAlreadyClaimedException);
+      await expect(service.execute(dto)).rejects.toThrow(UserEmailAlreadyInUseException);
       expect(mockCreateUserService.createUser).not.toHaveBeenCalled();
     });
   });

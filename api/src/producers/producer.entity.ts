@@ -1,6 +1,13 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
-import { ProducerCrop } from './producer-crop.entity'
-import { Harvest } from '../harvest/harvest.entity'
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm'
+import { RuralProperty } from '../rural-property/rural-property.entity'
 
 @Entity()
 export class Producer {
@@ -10,30 +17,18 @@ export class Producer {
   @Column()
   name: string
 
-  @Column({ unique: true })
+  @Column()
   document: string
 
-  @Column()
-  farmName: string
+  @CreateDateColumn()
+  createdAt: Date
 
-  @Column()
-  city: string
+  @UpdateDateColumn()
+  updatedAt: Date
 
-  @Column()
-  state: string
+  @DeleteDateColumn()
+  deletedAt: Date
 
-  @Column({ type: 'decimal', precision: 10, scale: 2 })
-  totalArea: number
-
-  @Column({ type: 'decimal', precision: 10, scale: 2 })
-  arableArea: number
-
-  @Column({ type: 'decimal', precision: 10, scale: 2 })
-  vegetationArea: number
-
-  @OneToMany(() => ProducerCrop, (producerCrop) => producerCrop.producer)
-  producerCrops: ProducerCrop[]
-
-  @OneToMany(() => Harvest, (harvest) => harvest.producer)
-  harvests: Harvest[]
+  @OneToMany(() => RuralProperty, (property) => property.producer)
+  properties: RuralProperty[]
 }

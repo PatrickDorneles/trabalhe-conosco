@@ -4,7 +4,7 @@ import request from 'supertest';
 import { AuthController } from './auth.controller';
 import { SignupService } from './services/signup/signup.service';
 import { SigninService } from './services/signin/signin.service';
-import { UserEmailAlreadyClaimedException } from './errors/user-email-already-claimed.exception';
+import { UserEmailAlreadyInUseException } from './errors/user-email-already-in-use.exception';
 import { InvalidCredentialsException } from './errors/invalid-credentials.exception';
 
 describe('AuthController', () => {
@@ -56,14 +56,14 @@ describe('AuthController', () => {
     });
 
     it('should return 400 when email is already taken', async () => {
-      mockSignupService.execute.mockRejectedValue(new UserEmailAlreadyClaimedException());
+      mockSignupService.execute.mockRejectedValue(new UserEmailAlreadyInUseException());
 
       const response = await request(app.getHttpServer())
         .post('/auth/signup')
         .send(dto)
         .expect(400);
 
-      expect(response.body.message).toBe('auth.user-email-already-claimed');
+      expect(response.body.message).toBe('auth.user-email-already-in-use');
     });
   });
 
