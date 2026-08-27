@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { CreatePropertyInputDTO } from '../../dtos/create-property-input.dto';
-import { InsertPropertyRepository } from '../../repositories/insert-property.repository';
-import { GetProducerService } from '../../../producers/services/get-producer/get-producer.service';
+import { CreatePropertyInputDTO } from '@/rural-property/dtos/create-property-input.dto';
+import { InsertPropertyRepository } from '@/rural-property/repositories/insert-property.repository';
+import { GetProducerService } from '@/producer/services/get-producer/get-producer.service';
 
 @Injectable()
 export class CreatePropertyService {

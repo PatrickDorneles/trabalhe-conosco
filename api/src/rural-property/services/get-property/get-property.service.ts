@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { SelectPropertyByIdRepository } from '../../repositories/select-property-by-id.repository';
-import { PropertyNotFoundException } from '../../errors/property-not-found.exception';
+import { SelectPropertyByIdRepository } from '@/rural-property/repositories/select-property-by-id.repository';
+import { PropertyNotFoundException } from '@/rural-property/errors/property-not-found.exception';
 
 @Injectable()
 export class GetPropertyService {

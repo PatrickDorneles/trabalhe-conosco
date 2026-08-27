@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { RuralProperty } from '../rural-property.entity'
-import { ListPropertiesFilters } from '../filters/list-properties.filters'
-import { PaginationInputDTO } from '../../shared/dtos/pagination-input.dto'
-import { PaginationOutputDTO } from '../../shared/dtos/pagination-output.dto'
+import { RuralProperty } from '@/rural-property/rural-property.entity'
+import { ListPropertiesFilters } from '@/rural-property/filters/list-properties.filters'
+import { PaginationInputDTO } from '@/shared/dtos/pagination-input.dto'
+import { PaginationOutputDTO } from '@/shared/dtos/pagination-output.dto'
 
 @Injectable()
 export class SelectAllPropertiesRepository {

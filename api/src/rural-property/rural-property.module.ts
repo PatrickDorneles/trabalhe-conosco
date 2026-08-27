@@ -1,23 +1,23 @@
 import { Module, forwardRef } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { RuralProperty } from './rural-property.entity'
-import { ProducersModule } from '../producers/producers.module'
-import { CreatePropertyService } from './services/create-property/create-property.service';
-import { GetPropertyService } from './services/get-property/get-property.service';
-import { UpdatePropertyService } from './services/update-property/update-property.service';
-import { DeletePropertyService } from './services/delete-property/delete-property.service';
-import { ListPropertiesService } from './services/list-properties/list-properties.service';
-import { InsertPropertyRepository } from './repositories/insert-property.repository';
-import { SelectPropertyByIdRepository } from './repositories/select-property-by-id.repository';
-import { SelectAllPropertiesRepository } from './repositories/select-all-properties.repository';
-import { UpdatePropertyRepository } from './repositories/update-property.repository';
-import { DeletePropertyRepository } from './repositories/delete-property.repository';
-import { RuralPropertyController } from './rural-property.controller';
+import { RuralProperty } from '@/rural-property/rural-property.entity'
+import { ProducerModule } from '@/producer/producer.module'
+import { CreatePropertyService } from '@/rural-property/services/create-property/create-property.service';
+import { GetPropertyService } from '@/rural-property/services/get-property/get-property.service';
+import { UpdatePropertyService } from '@/rural-property/services/update-property/update-property.service';
+import { DeletePropertyService } from '@/rural-property/services/delete-property/delete-property.service';
+import { ListPropertiesService } from '@/rural-property/services/list-properties/list-properties.service';
+import { InsertPropertyRepository } from '@/rural-property/repositories/insert-property.repository';
+import { SelectPropertyByIdRepository } from '@/rural-property/repositories/select-property-by-id.repository';
+import { SelectAllPropertiesRepository } from '@/rural-property/repositories/select-all-properties.repository';
+import { UpdatePropertyRepository } from '@/rural-property/repositories/update-property.repository';
+import { DeletePropertyRepository } from '@/rural-property/repositories/delete-property.repository';
+import { RuralPropertyController } from '@/rural-property/rural-property.controller';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([RuralProperty]),
-    forwardRef(() => ProducersModule),
+    forwardRef(() => ProducerModule),
   ],
   exports: [TypeOrmModule],
   providers: [
@@ -34,4 +34,4 @@ import { RuralPropertyController } from './rural-property.controller';
   ],
   controllers: [RuralPropertyController],
 })
-export class RuralPropertyModule {}
+export class RuralPropertyModule { }

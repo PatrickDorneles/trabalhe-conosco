@@ -3,8 +3,8 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator'
-import { VerifyCPF } from '../../utils/verify-cpf/verify-cpf.util'
-import { VerifyCNPJ } from '../../utils/verify-cnpj/verify-cnpj.util'
+import { VerifyCPF } from '@/shared/utils/verify-cpf/verify-cpf.util'
+import { VerifyCNPJ } from '@/shared/utils/verify-cnpj/verify-cnpj.util'
 
 @ValidatorConstraint({ name: 'cpfCnpj', async: false })
 export class CpfCnpjValidator implements ValidatorConstraintInterface {

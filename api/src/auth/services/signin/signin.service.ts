@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
 import { GetUserService } from 'src/user/services/get-user/get-user.service';
-import { SigninInputDTO } from '../../dtos/signin-input.dto';
+import { SigninInputDTO } from '@/auth/dtos/signin-input.dto';
 import { InvalidCredentialsException } from 'src/auth/errors/invalid-credentials.exception';
 
 @Injectable()

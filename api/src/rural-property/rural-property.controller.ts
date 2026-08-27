@@ -11,15 +11,15 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CreatePropertyService } from './services/create-property/create-property.service';
-import { ListPropertiesService } from './services/list-properties/list-properties.service';
-import { GetPropertyService } from './services/get-property/get-property.service';
-import { UpdatePropertyService } from './services/update-property/update-property.service';
-import { DeletePropertyService } from './services/delete-property/delete-property.service';
-import { CreatePropertyInputDTO } from './dtos/create-property-input.dto';
-import { UpdatePropertyInputDTO } from './dtos/update-property-input.dto';
-import { PaginationInputDTO } from '../shared/dtos/pagination-input.dto';
-import { ListPropertiesFilters } from './filters/list-properties.filters';
+import { CreatePropertyService } from '@/rural-property/services/create-property/create-property.service';
+import { ListPropertiesService } from '@/rural-property/services/list-properties/list-properties.service';
+import { GetPropertyService } from '@/rural-property/services/get-property/get-property.service';
+import { UpdatePropertyService } from '@/rural-property/services/update-property/update-property.service';
+import { DeletePropertyService } from '@/rural-property/services/delete-property/delete-property.service';
+import { CreatePropertyInputDTO } from '@/rural-property/dtos/create-property-input.dto';
+import { UpdatePropertyInputDTO } from '@/rural-property/dtos/update-property-input.dto';
+import { PaginationInputDTO } from '@/shared/dtos/pagination-input.dto';
+import { ListPropertiesFilters } from '@/rural-property/filters/list-properties.filters';
 
 @ApiTags('Propriedades Rurais')
 @ApiBearerAuth()

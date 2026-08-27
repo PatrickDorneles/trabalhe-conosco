@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { SelectAllPropertiesRepository } from '../../repositories/select-all-properties.repository';
-import { PaginationInputDTO } from '../../../shared/dtos/pagination-input.dto';
-import { ListPropertiesFilters } from '../../filters/list-properties.filters';
+import { SelectAllPropertiesRepository } from '@/rural-property/repositories/select-all-properties.repository';
+import { PaginationInputDTO } from '@/shared/dtos/pagination-input.dto';
+import { ListPropertiesFilters } from '@/rural-property/filters/list-properties.filters';
 
 @Injectable()
 export class ListPropertiesService {

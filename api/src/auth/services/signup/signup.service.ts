@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { CreateUserService } from 'src/user/services/create-user/create-user.service';
-import { SignupInputDTO } from '../../dtos/signup-input.dto';
+import { SignupInputDTO } from '@/auth/dtos/signup-input.dto';
 import { GetUserService } from 'src/user/services/get-user/get-user.service';
 import { UserEmailAlreadyInUseException } from 'src/auth/errors/user-email-already-in-use.exception';
 

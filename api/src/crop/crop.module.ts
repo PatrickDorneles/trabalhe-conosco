@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { Crop } from './crop.entity'
+import { Crop } from '@/crop/crop.entity'
 
 @Module({
   imports: [TypeOrmModule.forFeature([Crop])],

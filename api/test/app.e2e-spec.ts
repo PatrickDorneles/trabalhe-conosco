@@ -93,7 +93,7 @@ describe('App (e2e)', () => {
 
     it('should create a producer when authenticated', async () => {
       const response = await request(app.getHttpServer())
-        .post('/producers')
+        .post('/producer')
         .set('Authorization', `Bearer ${accessToken}`)
         .send({ name: 'Fazenda Boa Vista', document: '12345678909' })
         .expect(201);
@@ -104,14 +104,14 @@ describe('App (e2e)', () => {
 
     it('should return 401 when not authenticated', async () => {
       await request(app.getHttpServer())
-        .post('/producers')
+        .post('/producer')
         .send({ name: 'Fazenda Sem Auth', document: '98765432100' })
         .expect(401);
     });
 
     it('should return 409 when document is already in use', async () => {
       const response = await request(app.getHttpServer())
-        .post('/producers')
+        .post('/producer')
         .set('Authorization', `Bearer ${accessToken}`)
         .send({ name: 'Outra Fazenda', document: '12345678909' })
         .expect(409);
@@ -121,7 +121,7 @@ describe('App (e2e)', () => {
 
     it('should return 400 when document is invalid', async () => {
       await request(app.getHttpServer())
-        .post('/producers')
+        .post('/producer')
         .set('Authorization', `Bearer ${accessToken}`)
         .send({ name: 'Fazenda Inválida', document: '123' })
         .expect(400);

@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CreatePropertyService } from './create-property.service';
 import { InsertPropertyRepository } from '../../repositories/insert-property.repository';
-import { GetProducerService } from '../../../producers/services/get-producer/get-producer.service';
-import { ProducerNotFoundException } from '../../../producers/errors/producer-not-found.exception';
+import { GetProducerService } from '../../../producer/services/get-producer/get-producer.service';
+import { ProducerNotFoundException } from '../../../producer/errors/producer-not-found.exception';
 
 describe('CreatePropertyService', () => {
   let service: CreatePropertyService;
