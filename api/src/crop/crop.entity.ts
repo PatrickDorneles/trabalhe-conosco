@@ -1,4 +1,12 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm'
 import { ProducerCrop } from '../producers/producer-crop.entity'
 
 @Entity()
@@ -11,4 +19,13 @@ export class Crop {
 
   @OneToMany(() => ProducerCrop, (producerCrop) => producerCrop.crop)
   producerCrops: ProducerCrop[]
+
+  @CreateDateColumn()
+  createdAt: Date
+
+  @UpdateDateColumn()
+  updatedAt: Date
+
+  @DeleteDateColumn()
+  deletedAt: Date
 }

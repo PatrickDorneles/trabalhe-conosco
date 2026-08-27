@@ -1,19 +1,36 @@
-import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
-import { Producer } from './producer.entity'
-import { Crop } from '../crop/crop.entity'
+import {
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm'
+import { RuralProperty } from '../rural-property/rural-property.entity'
 import { Harvest } from '../harvest/harvest.entity'
+import { Crop } from '../crop/crop.entity'
 
 @Entity()
 export class ProducerCrop {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @ManyToOne(() => Producer, (producer) => producer.producerCrops)
-  producer: Producer
+  @ManyToOne(() => RuralProperty, (property) => property.producerCrops)
+  ruralProperty: RuralProperty
 
   @ManyToOne(() => Harvest, (harvest) => harvest.producerCrops)
   harvest: Harvest
 
   @ManyToOne(() => Crop, (crop) => crop.producerCrops)
   crop: Crop
+
+  @CreateDateColumn()
+  createdAt: Date
+
+  @UpdateDateColumn()
+  updatedAt: Date
+
+  @DeleteDateColumn()
+  deletedAt: Date
 }
