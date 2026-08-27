@@ -14,23 +14,24 @@ export class CreateProducerService {
   ) { }
 
   async execute(dto: CreateProducerInputDTO) {
-    this.logger.log(`Attempting to create producer with document: ${dto.document}`)
+    const document = dto.document.replace(/\D/g, '')
+    this.logger.log(`Attempting to create producer with document: ${document}`)
 
     const existing = await this.getProducerService
-      .getByDocument(dto.document)
+      .getByDocument(document)
       .catch(() => undefined)
 
     if (existing) {
-      this.logger.error(`Document (${dto.document}) already in use by producer: ${existing.id}`)
+      this.logger.error(`Document (${document}) already in use by producer: ${existing.id}`)
       throw new ProducerDocumentAlreadyInUseException()
     }
 
     const producer = await this.insertProducerRepository.execute({
       name: dto.name,
-      document: dto.document,
+      document,
     })
 
-    this.logger.log(`Producer (${dto.document}) created successfully`)
+    this.logger.log(`Producer (${document}) created successfully`)
     return producer
   }
 }

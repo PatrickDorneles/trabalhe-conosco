@@ -8,7 +8,7 @@ export class InsertProducerRepository {
   constructor(
     @InjectRepository(Producer)
     private readonly repo: Repository<Producer>,
-  ) {}
+  ) { }
 
   async execute(data: Partial<Producer>): Promise<Producer> {
     const producer = this.repo.create(data)

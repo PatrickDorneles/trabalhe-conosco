@@ -36,9 +36,8 @@ describe('CreateProducerService', () => {
   });
 
   describe('execute', () => {
-    const dto = { name: 'João da Silva', document: '12345678909' };
-
     it('should create producer when document is available', async () => {
+      const dto = { name: 'João da Silva', document: '12345678909' };
       const mockProducer = { id: '123', name: 'João da Silva', document: '12345678909' };
       mockGetProducerService.getByDocument.mockRejectedValue(new Error());
       mockInsertProducerRepository.execute.mockResolvedValue(mockProducer);
@@ -53,8 +52,39 @@ describe('CreateProducerService', () => {
       });
     });
 
-    it('should throw ProducerDocumentAlreadyExistsException when document already exists', async () => {
-      const existingProducer = { id: '999', name: 'Jane', document: '12345678909' };
+    it('should strip non-digit characters from document', async () => {
+      const dto = { name: 'João da Silva', document: '529.982.247-25' };
+      const mockProducer = { id: '123', name: 'João da Silva', document: '52998224725' };
+      mockGetProducerService.getByDocument.mockRejectedValue(new Error());
+      mockInsertProducerRepository.execute.mockResolvedValue(mockProducer);
+
+      await service.execute(dto);
+
+      expect(mockGetProducerService.getByDocument).toHaveBeenCalledWith('52998224725');
+      expect(mockInsertProducerRepository.execute).toHaveBeenCalledWith({
+        name: 'João da Silva',
+        document: '52998224725',
+      });
+    });
+
+    it('should strip formatting from CNPJ', async () => {
+      const dto = { name: 'Empresa', document: '11.222.333/0001-81' };
+      const mockProducer = { id: '456', name: 'Empresa', document: '11222333000181' };
+      mockGetProducerService.getByDocument.mockRejectedValue(new Error());
+      mockInsertProducerRepository.execute.mockResolvedValue(mockProducer);
+
+      await service.execute(dto);
+
+      expect(mockGetProducerService.getByDocument).toHaveBeenCalledWith('11222333000181');
+      expect(mockInsertProducerRepository.execute).toHaveBeenCalledWith({
+        name: 'Empresa',
+        document: '11222333000181',
+      });
+    });
+
+    it('should throw ProducerDocumentAlreadyInUseException when document already exists', async () => {
+      const dto = { name: 'João da Silva', document: '529.982.247-25' };
+      const existingProducer = { id: '999', name: 'Jane', document: '52998224725' };
       mockGetProducerService.getByDocument.mockResolvedValue(existingProducer);
 
       await expect(service.execute(dto)).rejects.toThrow(ProducerDocumentAlreadyInUseException);

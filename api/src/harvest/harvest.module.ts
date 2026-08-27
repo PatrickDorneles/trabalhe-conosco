@@ -6,4 +6,4 @@ import { Harvest } from './harvest.entity'
   imports: [TypeOrmModule.forFeature([Harvest])],
   exports: [TypeOrmModule],
 })
-export class HarvestModule {}
+export class HarvestModule { }
