@@ -11,14 +11,14 @@ export class CpfCnpjValidator implements ValidatorConstraintInterface {
   validate(value: string) {
     if (!value) return false
 
-    const clean = value.replace(/\D/g, '')
+    value = value.replace(/\D/g, '')
 
-    if (clean.length === 11) {
-      return VerifyCPF.instance.execute(clean)
+    if (value.length === 11) {
+      return VerifyCPF.instance.execute(value)
     }
 
-    if (clean.length === 14) {
-      return VerifyCNPJ.instance.execute(clean)
+    if (value.length === 14) {
+      return VerifyCNPJ.instance.execute(value)
     }
 
     return false

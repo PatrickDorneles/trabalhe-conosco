@@ -17,7 +17,7 @@ export class Producer {
   @Column()
   name: string
 
-  @Column({ unique: true })
+  @Column()
   document: string
 
   @CreateDateColumn()

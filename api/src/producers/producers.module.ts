@@ -40,4 +40,4 @@ import { DeleteProducerRepository } from './repositories/delete-producer/delete-
     DeleteProducerRepository,
   ],
 })
-export class ProducersModule {}
+export class ProducersModule { }
