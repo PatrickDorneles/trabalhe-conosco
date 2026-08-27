@@ -29,7 +29,7 @@ describe('CpfCnpjValidator', () => {
 
   describe('defaultMessage', () => {
     it('should return error message', () => {
-      expect(validator.defaultMessage({ targetName: 'document' } as any)).toBe(
+      expect(validator.defaultMessage({ property: 'document' } as any)).toBe(
         'document must be a valid cpf or cnpj',
       );
     });

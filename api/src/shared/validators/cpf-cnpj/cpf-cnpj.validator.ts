@@ -25,6 +25,6 @@ export class CpfCnpjValidator implements ValidatorConstraintInterface {
   }
 
   defaultMessage(validationArguments?: ValidationArguments) {
-    return `${validationArguments?.targetName} must be a valid cpf or cnpj`
+    return `${validationArguments?.property} must be a valid cpf or cnpj`
   }
 }
