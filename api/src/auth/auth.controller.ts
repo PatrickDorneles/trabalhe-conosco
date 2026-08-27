@@ -1,12 +1,12 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { SignupService } from './services/signup/signup.service';
-import { SigninService } from './services/signin/signin.service';
-import { SignupInputDTO } from './dtos/signup-input.dto';
-import { SigninInputDTO } from './dtos/signin-input.dto';
-import { SigninOutputDTO } from './dtos/signin-output.dto';
-import { UserOutput } from '../user/dtos/user-output.dto';
-import { IsPublic } from '../shared/decorators/is-public/is-public.decorator';
+import { SignupService } from '@/auth/services/signup/signup.service';
+import { SigninService } from '@/auth/services/signin/signin.service';
+import { SignupInputDTO } from '@/auth/dtos/signup-input.dto';
+import { SigninInputDTO } from '@/auth/dtos/signin-input.dto';
+import { SigninOutputDTO } from '@/auth/dtos/signin-output.dto';
+import { UserOutput } from '@/user/dtos/user-output.dto';
+import { IsPublic } from '@/shared/decorators/is-public/is-public.decorator';
 
 @ApiTags('Autenticação')
 @Controller('auth')

@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { UpdatePropertyInputDTO } from '../../dtos/update-property-input.dto';
-import { GetPropertyService } from '../get-property/get-property.service';
-import { UpdatePropertyRepository } from '../../repositories/update-property.repository';
+import { UpdatePropertyInputDTO } from '@/rural-property/dtos/update-property-input.dto';
+import { GetPropertyService } from '@/rural-property/services/get-property/get-property.service';
+import { UpdatePropertyRepository } from '@/rural-property/repositories/update-property.repository';
 
 @Injectable()
 export class UpdatePropertyService {

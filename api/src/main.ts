@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppModule } from './app.module';
+import { AppModule } from '@/app.module';
 import { Logger, ValidationPipe } from '@nestjs/common';
-import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { JwtAuthGuard } from '@/auth/guards/jwt-auth.guard';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap')

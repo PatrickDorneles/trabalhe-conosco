@@ -8,8 +8,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
-import { Producer } from '../producers/producer.entity'
-import { ProducerCrop } from '../producers/producer-crop.entity'
+import { Producer } from '@/producer/producer.entity'
+import { ProducerCrop } from '@/harvest/producer-crop.entity'
 
 @Entity()
 export class RuralProperty {

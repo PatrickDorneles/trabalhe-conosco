@@ -7,14 +7,14 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
-import { ProducerCrop } from '../producers/producer-crop.entity'
+import { ProducerCrop } from '@/harvest/producer-crop.entity'
 
 @Entity()
 export class Harvest {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column({ type: 'int', unique: true })
+  @Column({ type: 'int' })
   year: number
 
   @OneToMany(() => ProducerCrop, (producerCrop) => producerCrop.harvest)

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
-import { RuralProperty } from '../rural-property.entity'
+import { RuralProperty } from '@/rural-property/rural-property.entity'
 
 @Injectable()
 export class InsertPropertyRepository {

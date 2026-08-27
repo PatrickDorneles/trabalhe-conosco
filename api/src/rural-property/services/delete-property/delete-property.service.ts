@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { GetPropertyService } from '../get-property/get-property.service';
-import { DeletePropertyRepository } from '../../repositories/delete-property.repository';
+import { GetPropertyService } from '@/rural-property/services/get-property/get-property.service';
+import { DeletePropertyRepository } from '@/rural-property/repositories/delete-property.repository';
 
 @Injectable()
 export class DeletePropertyService {
