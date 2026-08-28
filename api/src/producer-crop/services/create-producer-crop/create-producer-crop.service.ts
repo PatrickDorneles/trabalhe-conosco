@@ -14,7 +14,7 @@ export class CreateProducerCropService {
     private readonly getPropertyService: GetPropertyService,
     private readonly getHarvestService: GetHarvestService,
     private readonly createCropService: CreateCropService,
-  ) {}
+  ) { }
 
   async execute(dto: CreateProducerCropInputDTO) {
     this.logger.log(

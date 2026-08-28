@@ -8,11 +8,13 @@ import { CreateProducerCropService } from './services/create-producer-crop/creat
 import { UpdateProducerCropService } from './services/update-producer-crop/update-producer-crop.service';
 import { DeleteProducerCropService } from './services/delete-producer-crop/delete-producer-crop.service';
 import { ListProducerCropService } from './services/list-producer-crop/list-producer-crop.service';
+import { GetProducerCropService } from './services/get-producer-crop/get-producer-crop.service';
 import { InsertProducerCropRepository } from '@/producer-crop/repositories/insert-producer-crop/insert-producer-crop.repository';
 import { SelectProducerCropByIdRepository } from '@/producer-crop/repositories/select-producer-crop-by-id/select-producer-crop-by-id.repository';
 import { SelectAllProducerCropsRepository } from '@/producer-crop/repositories/select-all-producer-crops/select-all-producer-crops.repository';
 import { UpdateProducerCropRepository } from '@/producer-crop/repositories/update-producer-crop/update-producer-crop.repository';
 import { DeleteProducerCropRepository } from '@/producer-crop/repositories/delete-producer-crop/delete-producer-crop.repository';
+import { ProducerCropController } from './producer-crop.controller';
 
 @Module({
   imports: [
@@ -24,6 +26,7 @@ import { DeleteProducerCropRepository } from '@/producer-crop/repositories/delet
   exports: [TypeOrmModule],
   providers: [
     CreateProducerCropService,
+    GetProducerCropService,
     UpdateProducerCropService,
     DeleteProducerCropService,
     ListProducerCropService,
@@ -33,5 +36,6 @@ import { DeleteProducerCropRepository } from '@/producer-crop/repositories/delet
     UpdateProducerCropRepository,
     DeleteProducerCropRepository,
   ],
+  controllers: [ProducerCropController],
 })
-export class ProducerCropModule {}
+export class ProducerCropModule { }

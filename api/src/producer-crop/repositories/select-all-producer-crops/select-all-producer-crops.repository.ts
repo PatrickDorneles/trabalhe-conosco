@@ -4,19 +4,14 @@ import { Repository } from 'typeorm'
 import { ProducerCrop } from '@/producer-crop/producer-crop.entity'
 import { PaginationInputDTO } from '@/shared/dtos/pagination-input.dto'
 import { PaginationOutputDTO } from '@/shared/dtos/pagination-output.dto'
-
-export interface SelectAllProducerCropsFilters {
-  harvestId?: string
-  ruralPropertyId?: string
-  producerId?: string
-}
+import { SelectAllProducerCropsFilters } from '@/producer-crop/types/select-all-producer-crops-filters.type'
 
 @Injectable()
 export class SelectAllProducerCropsRepository {
   constructor(
     @InjectRepository(ProducerCrop)
     private readonly repo: Repository<ProducerCrop>,
-  ) {}
+  ) { }
 
   async execute(
     filters: SelectAllProducerCropsFilters,

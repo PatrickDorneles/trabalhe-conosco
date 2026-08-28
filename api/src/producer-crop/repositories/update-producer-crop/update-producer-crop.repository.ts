@@ -8,7 +8,7 @@ export class UpdateProducerCropRepository {
   constructor(
     @InjectRepository(ProducerCrop)
     private readonly repo: Repository<ProducerCrop>,
-  ) {}
+  ) { }
 
   async execute(id: string, data: Partial<ProducerCrop>): Promise<ProducerCrop | null> {
     await this.repo.update(id, data)
