@@ -19,7 +19,7 @@ import { RuralPropertyController } from '@/rural-property/rural-property.control
     TypeOrmModule.forFeature([RuralProperty]),
     forwardRef(() => ProducerModule),
   ],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, GetPropertyService],
   providers: [
     CreatePropertyService,
     GetPropertyService,

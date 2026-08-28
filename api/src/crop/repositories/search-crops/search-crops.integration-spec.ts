@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { config } from 'dotenv';
 import { Crop } from '@/crop/crop.entity';
-import { ProducerCrop } from '@/harvest/producer-crop.entity';
+import { ProducerCrop } from '@/producer-crop/producer-crop.entity';
 import { RuralProperty } from '@/rural-property/rural-property.entity';
 import { Harvest } from '@/harvest/harvest.entity';
 import { Producer } from '@/producer/producer.entity';
