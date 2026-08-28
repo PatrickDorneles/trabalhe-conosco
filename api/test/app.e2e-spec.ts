@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { ClassSerializerInterceptor, INestApplication, ValidationPipe } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import request from 'supertest';
 import { config } from 'dotenv';
@@ -20,6 +20,7 @@ describe('App (e2e)', () => {
     app = moduleFixture.createNestApplication();
     app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
     app.useGlobalGuards(new JwtAuthGuard(app.get(Reflector)));
+    app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
     await app.init();
   }, 30_000);
 
@@ -77,6 +78,35 @@ describe('App (e2e)', () => {
         .expect(401);
 
       expect(response.body.message).toBe('auth.invalid-credentials');
+    });
+  });
+
+  describe('GET /auth/me', () => {
+    let accessToken: string;
+
+    beforeAll(async () => {
+      const response = await request(app.getHttpServer())
+        .post('/auth/signin')
+        .send({ email: 'john@test.com', password: '12345678' });
+
+      accessToken = response.body.accessToken;
+    });
+
+    it('should return authenticated user info', async () => {
+      const response = await request(app.getHttpServer())
+        .get('/auth/me')
+        .set('Authorization', `Bearer ${accessToken}`)
+        .expect(200);
+
+      expect(response.body).toHaveProperty('name', 'John Doe');
+      expect(response.body).toHaveProperty('email', 'john@test.com');
+      expect(response.body).not.toHaveProperty('passwordHash');
+    });
+
+    it('should return 401 when not authenticated', async () => {
+      await request(app.getHttpServer())
+        .get('/auth/me')
+        .expect(401);
     });
   });
 
