@@ -3,6 +3,8 @@ import { CreatePropertyService } from './create-property.service';
 import { InsertPropertyRepository } from '../../repositories/insert-property.repository';
 import { GetProducerService } from '../../../producer/services/get-producer/get-producer.service';
 import { ProducerNotFoundException } from '../../../producer/errors/producer-not-found.exception';
+import { PropertyInvalidAreaException } from '../../errors/property-invalid-area.exception';
+import { PropertyAreaValidator } from '../../validators/property-area.validator';
 
 describe('CreatePropertyService', () => {
   let service: CreatePropertyService;
@@ -15,12 +17,17 @@ describe('CreatePropertyService', () => {
     getById: jest.fn(),
   };
 
+  const mockPropertyAreaValidator = {
+    execute: jest.fn(),
+  };
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         CreatePropertyService,
         { provide: InsertPropertyRepository, useValue: mockInsertPropertyRepository },
         { provide: GetProducerService, useValue: mockGetProducerService },
+        { provide: PropertyAreaValidator, useValue: mockPropertyAreaValidator },
       ],
     }).compile();
 
@@ -56,6 +63,11 @@ describe('CreatePropertyService', () => {
 
       expect(result).toEqual(property);
       expect(mockGetProducerService.getById).toHaveBeenCalledWith(dto.producerId);
+      expect(mockPropertyAreaValidator.execute).toHaveBeenCalledWith({
+        totalArea: dto.totalArea,
+        arableArea: dto.arableArea,
+        vegetationArea: dto.vegetationArea,
+      });
       expect(mockInsertPropertyRepository.execute).toHaveBeenCalledWith({
         farmName: dto.farmName,
         city: dto.city,
@@ -71,6 +83,18 @@ describe('CreatePropertyService', () => {
       mockGetProducerService.getById.mockRejectedValue(new ProducerNotFoundException());
 
       await expect(service.execute(dto)).rejects.toThrow(ProducerNotFoundException);
+      expect(mockPropertyAreaValidator.execute).not.toHaveBeenCalled();
+      expect(mockInsertPropertyRepository.execute).not.toHaveBeenCalled();
+    });
+
+    it('should throw PropertyInvalidAreaException when areas exceed total area', async () => {
+      const producer = { id: dto.producerId, name: 'João', document: '12345678909' };
+      mockGetProducerService.getById.mockResolvedValue(producer);
+      mockPropertyAreaValidator.execute.mockImplementation(() => {
+        throw new PropertyInvalidAreaException();
+      });
+
+      await expect(service.execute(dto)).rejects.toThrow(PropertyInvalidAreaException);
       expect(mockInsertPropertyRepository.execute).not.toHaveBeenCalled();
     });
   });

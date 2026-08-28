@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { CreatePropertyInputDTO } from '@/rural-property/dtos/create-property-input.dto';
 import { InsertPropertyRepository } from '@/rural-property/repositories/insert-property.repository';
 import { GetProducerService } from '@/producer/services/get-producer/get-producer.service';
+import { PropertyAreaValidator } from '@/rural-property/validators/property-area.validator';
 
 @Injectable()
 export class CreatePropertyService {
@@ -10,12 +11,19 @@ export class CreatePropertyService {
   constructor(
     private readonly insertPropertyRepository: InsertPropertyRepository,
     private readonly getProducerService: GetProducerService,
+    private readonly propertyAreaValidator: PropertyAreaValidator,
   ) { }
 
   async execute(dto: CreatePropertyInputDTO) {
     this.logger.log(`Attempting to create property for producer: ${dto.producerId}`)
 
     const producer = await this.getProducerService.getById(dto.producerId)
+
+    this.propertyAreaValidator.execute({
+      totalArea: dto.totalArea,
+      arableArea: dto.arableArea,
+      vegetationArea: dto.vegetationArea,
+    })
 
     const property = await this.insertPropertyRepository.execute({
       farmName: dto.farmName,
