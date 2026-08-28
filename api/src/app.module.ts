@@ -6,6 +6,8 @@ import { AppService } from '@/app.service';
 import { AuthModule } from '@/auth/auth.module';
 import { UserModule } from '@/user/user.module';
 import { ProducerModule } from '@/producer/producer.module';
+import { ProducerCropModule } from './producer-crop/producer-crop.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { ProducerModule } from '@/producer/producer.module';
     AuthModule,
     UserModule,
     ProducerModule,
+    ProducerCropModule,
+    DashboardModule,
   ],
   controllers: [AppController],
   providers: [AppService],
