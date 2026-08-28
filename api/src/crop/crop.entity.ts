@@ -14,7 +14,7 @@ export class Crop {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column({ unique: true })
+  @Column()
   name: string
 
   @OneToMany(() => ProducerCrop, (producerCrop) => producerCrop.crop)
