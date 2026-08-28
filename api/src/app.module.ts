@@ -6,8 +6,9 @@ import { AppService } from '@/app.service';
 import { AuthModule } from '@/auth/auth.module';
 import { UserModule } from '@/user/user.module';
 import { ProducerModule } from '@/producer/producer.module';
-import { ProducerCropModule } from './producer-crop/producer-crop.module';
-import { DashboardModule } from './dashboard/dashboard.module';
+import { migrations } from '@/database/migrations';
+import { ProducerCropModule } from '@/producer-crop/producer-crop.module';
+import { DashboardModule } from '@/dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
         autoLoadEntities: true,
-        synchronize: true,
+        migrations,
+        migrationsRun: true,
       }),
     }),
     AuthModule,

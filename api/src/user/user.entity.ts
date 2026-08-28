@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
+import { Exclude } from 'class-transformer'
 
 @Entity()
 export class User {
@@ -18,6 +19,7 @@ export class User {
   @Column({ unique: true, nullable: false })
   email: string
 
+  @Exclude()
   @Column({ nullable: false })
   passwordHash: string
 

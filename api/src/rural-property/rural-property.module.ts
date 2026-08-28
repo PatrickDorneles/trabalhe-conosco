@@ -12,6 +12,7 @@ import { SelectPropertyByIdRepository } from '@/rural-property/repositories/sele
 import { SelectAllPropertiesRepository } from '@/rural-property/repositories/select-all-properties.repository';
 import { UpdatePropertyRepository } from '@/rural-property/repositories/update-property.repository';
 import { DeletePropertyRepository } from '@/rural-property/repositories/delete-property.repository';
+import { PropertyAreaValidator } from '@/rural-property/validators/property-area.validator';
 import { RuralPropertyController } from '@/rural-property/rural-property.controller';
 
 @Module({
@@ -19,13 +20,14 @@ import { RuralPropertyController } from '@/rural-property/rural-property.control
     TypeOrmModule.forFeature([RuralProperty]),
     forwardRef(() => ProducerModule),
   ],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, GetPropertyService],
   providers: [
     CreatePropertyService,
     GetPropertyService,
     UpdatePropertyService,
     DeletePropertyService,
     ListPropertiesService,
+    PropertyAreaValidator,
     InsertPropertyRepository,
     SelectPropertyByIdRepository,
     SelectAllPropertiesRepository,

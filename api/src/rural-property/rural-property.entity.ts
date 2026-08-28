@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm'
 import { Producer } from '@/producer/producer.entity'
-import { ProducerCrop } from '@/harvest/producer-crop.entity'
+import { ProducerCrop } from '@/producer-crop/producer-crop.entity'
 
 @Entity()
 export class RuralProperty {

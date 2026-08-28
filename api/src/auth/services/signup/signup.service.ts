@@ -18,7 +18,7 @@ export class SignupService {
     const userWithSameEmail = await this.getUserService.getByEmail(dto.email).catch(() => undefined)
 
     if (userWithSameEmail) {
-      this.logger.error(`Email (${dto.email}) already in use, by user: ${userWithSameEmail.id}`)
+      this.logger.warn(`Email (${dto.email}) already in use, by user: ${userWithSameEmail.id}`)
       throw new UserEmailAlreadyInUseException()
     }
 

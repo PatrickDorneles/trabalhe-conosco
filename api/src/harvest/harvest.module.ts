@@ -15,7 +15,7 @@ import { HarvestController } from './harvest.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Harvest])],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, GetHarvestService],
   providers: [
     CreateHarvestService,
     GetHarvestService,

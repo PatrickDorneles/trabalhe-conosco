@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
-import { ProducerCrop } from '@/harvest/producer-crop.entity'
+import { ProducerCrop } from '@/producer-crop/producer-crop.entity'
 
 @Entity()
 export class Crop {

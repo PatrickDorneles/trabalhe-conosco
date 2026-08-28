@@ -1,7 +1,7 @@
 import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Producer } from '@/producer/producer.entity';
-import { ProducerCrop } from '@/harvest/producer-crop.entity';
+import { ProducerCrop } from '@/producer-crop/producer-crop.entity';
 import { RuralPropertyModule } from '@/rural-property/rural-property.module';
 import { HarvestModule } from '@/harvest/harvest.module';
 import { CropModule } from '@/crop/crop.module';

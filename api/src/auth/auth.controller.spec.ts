@@ -4,6 +4,7 @@ import request from 'supertest';
 import { AuthController } from './auth.controller';
 import { SignupService } from './services/signup/signup.service';
 import { SigninService } from './services/signin/signin.service';
+import { GetAuthenticatedUserService } from './services/get-authenticated-user/get-authenticated-user.service';
 import { UserEmailAlreadyInUseException } from './errors/user-email-already-in-use.exception';
 import { InvalidCredentialsException } from './errors/invalid-credentials.exception';
 
@@ -18,16 +19,25 @@ describe('AuthController', () => {
     execute: jest.fn(),
   };
 
+  const mockGetAuthenticatedUserService = {
+    execute: jest.fn(),
+  };
+
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
       providers: [
         { provide: SignupService, useValue: mockSignupService },
         { provide: SigninService, useValue: mockSigninService },
+        { provide: GetAuthenticatedUserService, useValue: mockGetAuthenticatedUserService },
       ],
     }).compile();
 
     app = module.createNestApplication();
+    app.use((req: { user?: { id: string } }, _res: any, next: () => void) => {
+      req.user = { id: 'user-1' };
+      next();
+    });
     await app.init();
   });
 
@@ -92,6 +102,21 @@ describe('AuthController', () => {
         .expect(401);
 
       expect(response.body.message).toBe('auth.invalid-credentials');
+    });
+  });
+
+  describe('GET /auth/me', () => {
+    it('should return authenticated user info', async () => {
+      const mockUser = { name: 'John', email: 'test@test.com' };
+      mockGetAuthenticatedUserService.execute.mockResolvedValue(mockUser);
+
+      const response = await request(app.getHttpServer())
+        .get('/auth/me')
+        .set('Authorization', 'Bearer token')
+        .expect(200);
+
+      expect(response.body).toEqual(mockUser);
+      expect(mockGetAuthenticatedUserService.execute).toHaveBeenCalledWith('user-1');
     });
   });
 });

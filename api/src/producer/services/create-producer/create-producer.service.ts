@@ -22,7 +22,7 @@ export class CreateProducerService {
       .catch(() => undefined)
 
     if (existing) {
-      this.logger.error(`Document (${document}) already in use by producer: ${existing.id}`)
+      this.logger.warn(`Document (${document}) already in use by producer: ${existing.id}`)
       throw new ProducerDocumentAlreadyInUseException()
     }
 
