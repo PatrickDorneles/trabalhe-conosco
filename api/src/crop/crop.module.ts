@@ -6,7 +6,7 @@ import { SearchCropsService } from '@/crop/services/search-crops/search-crops.se
 import { InsertCropRepository } from '@/crop/repositories/insert-crop/insert-crop.repository';
 import { SearchCropsRepository } from '@/crop/repositories/search-crops/search-crops.repository';
 import { SelectCropByNameRepository } from '@/crop/repositories/select-crop-by-name/select-crop-by-name.repository';
-import { CropController } from './crop.controller';
+import { CropController } from '@/crop/crop.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Crop])],
