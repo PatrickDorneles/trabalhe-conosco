@@ -14,7 +14,9 @@ import { SelectProducerCropByIdRepository } from '@/producer-crop/repositories/s
 import { SelectAllProducerCropsRepository } from '@/producer-crop/repositories/select-all-producer-crops/select-all-producer-crops.repository';
 import { UpdateProducerCropRepository } from '@/producer-crop/repositories/update-producer-crop/update-producer-crop.repository';
 import { DeleteProducerCropRepository } from '@/producer-crop/repositories/delete-producer-crop/delete-producer-crop.repository';
+import { CountProducerCropsByCropRepository } from '@/producer-crop/repositories/count-producer-crops-by-crop/count-producer-crops-by-crop.repository';
 import { ProducerCropController } from '@/producer-crop/producer-crop.controller';
+import { CountProducerCropsByCropService } from './services/count-producer-crops-by-crop/count-producer-crops-by-crop.service';
 
 @Module({
   imports: [
@@ -35,6 +37,8 @@ import { ProducerCropController } from '@/producer-crop/producer-crop.controller
     SelectAllProducerCropsRepository,
     UpdateProducerCropRepository,
     DeleteProducerCropRepository,
+    CountProducerCropsByCropRepository,
+    CountProducerCropsByCropService,
   ],
   controllers: [ProducerCropController],
 })

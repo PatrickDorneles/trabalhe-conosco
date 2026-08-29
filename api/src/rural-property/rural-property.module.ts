@@ -12,8 +12,12 @@ import { SelectPropertyByIdRepository } from '@/rural-property/repositories/sele
 import { SelectAllPropertiesRepository } from '@/rural-property/repositories/select-all-properties.repository';
 import { UpdatePropertyRepository } from '@/rural-property/repositories/update-property.repository';
 import { DeletePropertyRepository } from '@/rural-property/repositories/delete-property.repository';
+import { CountPropertiesByStateRepository } from '@/rural-property/repositories/count-properties-by-state.repository';
+import { CountLandUseByTypeRepository } from '@/rural-property/repositories/count-land-use-by-type.repository';
 import { PropertyAreaValidator } from '@/rural-property/validators/property-area.validator';
 import { RuralPropertyController } from '@/rural-property/rural-property.controller';
+import { CountPropertiesByStateService } from './services/count-properties-by-state/count-properties-by-state.service';
+import { CountLandUseByTypeService } from './services/count-land-use-by-type/count-land-use-by-type.service';
 
 @Module({
   imports: [
@@ -33,6 +37,10 @@ import { RuralPropertyController } from '@/rural-property/rural-property.control
     SelectAllPropertiesRepository,
     UpdatePropertyRepository,
     DeletePropertyRepository,
+    CountPropertiesByStateRepository,
+    CountLandUseByTypeRepository,
+    CountPropertiesByStateService,
+    CountLandUseByTypeService,
   ],
   controllers: [RuralPropertyController],
 })
