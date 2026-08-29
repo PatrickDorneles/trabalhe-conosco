@@ -25,7 +25,7 @@ import { CountProducerCropsByCropService } from './services/count-producer-crops
     HarvestModule,
     CropModule,
   ],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, CountProducerCropsByCropService],
   providers: [
     CreateProducerCropService,
     GetProducerCropService,
