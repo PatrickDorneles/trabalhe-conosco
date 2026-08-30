@@ -12,19 +12,30 @@ import { SelectPropertyByIdRepository } from '@/rural-property/repositories/sele
 import { SelectAllPropertiesRepository } from '@/rural-property/repositories/select-all-properties.repository';
 import { UpdatePropertyRepository } from '@/rural-property/repositories/update-property.repository';
 import { DeletePropertyRepository } from '@/rural-property/repositories/delete-property.repository';
+import { CountPropertiesRepository } from '@/rural-property/repositories/count-properties.repository';
+import { SumTotalAreaRepository } from '@/rural-property/repositories/sum-total-area.repository';
 import { CountPropertiesByStateRepository } from '@/rural-property/repositories/count-properties-by-state.repository';
 import { CountLandUseByTypeRepository } from '@/rural-property/repositories/count-land-use-by-type.repository';
 import { PropertyAreaValidator } from '@/rural-property/validators/property-area.validator';
 import { RuralPropertyController } from '@/rural-property/rural-property.controller';
 import { CountPropertiesByStateService } from './services/count-properties-by-state/count-properties-by-state.service';
 import { CountLandUseByTypeService } from './services/count-land-use-by-type/count-land-use-by-type.service';
+import { CountPropertiesService } from './services/count-properties/count-properties.service';
+import { SumTotalAreaService } from './services/sum-total-area/sum-total-area.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([RuralProperty]),
     forwardRef(() => ProducerModule),
   ],
-  exports: [TypeOrmModule, GetPropertyService],
+  exports: [
+    TypeOrmModule,
+    GetPropertyService,
+    CountPropertiesByStateService,
+    CountLandUseByTypeService,
+    CountPropertiesService,
+    SumTotalAreaService,
+  ],
   providers: [
     CreatePropertyService,
     GetPropertyService,
@@ -39,8 +50,12 @@ import { CountLandUseByTypeService } from './services/count-land-use-by-type/cou
     DeletePropertyRepository,
     CountPropertiesByStateRepository,
     CountLandUseByTypeRepository,
+    CountPropertiesRepository,
+    SumTotalAreaRepository,
     CountPropertiesByStateService,
     CountLandUseByTypeService,
+    CountPropertiesService,
+    SumTotalAreaService,
   ],
   controllers: [RuralPropertyController],
 })
